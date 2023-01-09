@@ -1,0 +1,135 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Products {
+  id: ID!
+  name: String!
+  description: String
+  qty: Int!
+  base_price: Int!
+  cover_image: String
+  created_at: String!
+  updated_at: String
+  deleted: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String
+  password: String!
+  phone: String
+  address: String
+  birthdate: String
+  is_active: Int
+  created_at: String!
+  updated_at: String
+  deleted_at: String
+}
+
+type Transaction{
+  id: ID!
+  status: String!
+  date: String
+  total_price: Int!
+  discount: Int
+  admins_id: String
+  created_at: String!
+  updated_at: String
+  deleted_at: String
+  user_id: Int!
+}
+
+type TransactionDetails{
+  id: ID!
+  price: Int!
+  product_id: Int!
+  transaction_id: Int!
+  created_at: String!
+  updated_at: String
+  deleted_at: String
+}
+
+type Variant{
+  id: ID!
+  name: String!
+  price: Int!
+  cover_image: String
+  product_id: Int!
+}
+
+type Query {
+  getUser(id:ID!): User
+  getUserList: [User]
+  getProduct(id:ID!): Products
+  getProductList: [Products]
+  getTransaction(id:ID!, user_id:ID!): [Transaction]
+  getTransactionDetail(id:ID!,product_id:ID!,transaction_id:ID!): TransactionDetails
+  getVariant(product_id:ID!): [Variant]
+}
+
+input ProductInput {
+  id: String
+  name: String!
+  description: String
+  qty: Int!
+  base_price: Int!
+  cover_image: String
+  created_at: String
+  updated_at: String
+  deleted: String
+}
+
+input UserInput {
+  id: String
+  name: String!
+  email: String
+  password: String!
+  phone: String
+  address: String
+  birthdate: String
+  is_active: Int
+  created_at: String
+  updated_at: String
+  deleted_at: String
+}
+
+input TransactionInput{
+  id: String
+  status: String!
+  date: String
+  total_price: Int
+  discount: Int
+  admins_id: String
+  created_at: String
+  updated_at: String
+  deleted_at: String
+  user_id: Int!
+}
+
+input TransactionDetailsInput{
+  id: String
+  price: Int!
+  product_id: Int!
+  transaction_id: Int!
+  created_at: String
+  updated_at: String
+  deleted_at: String
+}
+
+input VariantInput{
+  id: String
+  name: String!
+  price: Int!
+  cover_image: String
+  product_id: Int!
+}
+
+type Mutation {
+  createProduct(input: ProductInput!): Products!
+  createUser(input: UserInput!): User!
+  createTransaction(input: TransactionInput!): Transaction!
+  createTransactionDetails(input: TransactionDetailsInput!): TransactionDetails!
+  createVariant(input: VariantInput!): Variant!
+}
